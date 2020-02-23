@@ -1,0 +1,2 @@
+(verbreche) (?:helligkeit von )?(?P<Entity>.*) (auf) (?P<BrightnessValue>\d*)(?: prozent)?
+(dimme|erhelle|erhöhe|reduziere) (?:helligkeit von )?(?P<Entity>.*?) (?:um)? (?P<BrightnessValue>\d*)?(?: prozent)?
