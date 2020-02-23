@@ -1,6 +1,6 @@
 {
-  "identifier": "HomeAssistantSkill",
-  "name": "HomeAssistant",
+  "identifier": "MycroftHassSkill",
+  "name": "Mycroft Hass Skill",
   "skillMetadata": {
       "sections": [
           {
@@ -25,7 +25,7 @@
                       "value": "8123"
                   }
               ]
-          }, 
+          },
           {
               "name": "Options",
               "fields": [
