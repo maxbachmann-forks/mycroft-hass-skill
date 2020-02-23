@@ -1,1 +1,2 @@
-(aktiviere|feuere|löse|rufe) (?P<Entity>.*) (aus|an)
+(löse|rufe) (?P<Entity>.*) (aus|an)
+(aktiviere|sonos) (?P<Entity>.*)
