@@ -71,6 +71,7 @@ class HomeAssistantSkill(FallbackSkill):
         self.__build_switch_intent()
         self.__build_light_adjust_intent()
         self.__build_automation_intent()
+        self.__build_sonos_intent()
         self.__build_sensor_intent()
         self.__build_tracker_intent()
         self.register_intent_file(
@@ -109,6 +110,11 @@ class HomeAssistantSkill(FallbackSkill):
         intent = IntentBuilder("AutomationIntent").require(
             "AutomationActionKeyword").require("Entity").build()
         self.register_intent(intent, self.handle_automation_intent)
+
+    def __build_sonos_intent(self):
+        intent = IntentBuilder("SonosIntent").require(
+            "SonosActionKeyword").require("Entity").build()
+        self.register_intent(intent, self.handle_sonos_intent)
 
     def __build_sensor_intent(self):
         intent = IntentBuilder("SensorIntent").require(
@@ -364,6 +370,28 @@ class HomeAssistantSkill(FallbackSkill):
                               data=ha_entity)
             self.ha.execute_service("homeassistant", "turn_on",
                                     data=ha_data)
+
+    def handle_sonos_intent(self, message):
+        entity = "Sonos"
+        LOGGER.debug("Entity: %s" % entity)
+        ha_entity = self._find_entity(
+            entity,
+            ['script']
+        )
+
+        if not ha_entity:
+            return
+
+        ha_data = {'entity_id': ha_entity['id']}
+
+        # IDEA: set context for 'turn it off again' or similar
+        # self.set_context('Entity', ha_entity['dev_name'])
+
+        LOGGER.debug("Triggered automation/scene/script: {}".format(ha_data))
+        self.speak_dialog('homeassistant.automation.trigger',
+                          data={"dev_name": ha_entity['dev_name']})
+        self.ha.execute_service("homeassistant", "turn_on",
+                                data=ha_data)
 
     def handle_sensor_intent(self, message):
         entity = message.data["Entity"]
