@@ -372,8 +372,8 @@ class HomeAssistantSkill(FallbackSkill):
                                     data=ha_data)
 
     def handle_sonos_intent(self, message):
-        entity = "Sonos" + message.data["Entity"]
-        LOGGER.debug("Sonos Entity: %s" % entity)
+        entity = "Sonos"
+        LOGGER.debug("Entity: %s" % entity)
         ha_entity = self._find_entity(
             entity,
             ['script']
