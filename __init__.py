@@ -372,7 +372,7 @@ class HomeAssistantSkill(FallbackSkill):
                                     data=ha_data)
 
     def handle_sonos_intent(self, message):
-        entity = "Sonos lauter"
+        entity = "Sonos " + message.data["Entity"]
         LOGGER.debug("Entity: %s" % entity)
         ha_entity = self._find_entity(
             entity,
