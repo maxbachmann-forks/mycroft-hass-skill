@@ -1,2 +1,2 @@
 (löse|rufe) (?P<Entity>.*) (aus|an)
-(aktiviere|sonos) (?P<Entity>.*)
+(aktiviere) (?P<Entity>.*)

@@ -112,7 +112,7 @@ class HomeAssistantSkill(FallbackSkill):
         self.register_intent(intent, self.handle_automation_intent)
 
     def __build_sonos_intent(self):
-        intent = IntentBuilder("AutomationIntent").require(
+        intent = IntentBuilder("SonosIntent").require(
             "SonosActionKeyword").require("Entity").build()
         self.register_intent(intent, self.handle_sonos_intent)
 
