@@ -24,11 +24,11 @@ LOGGER = getLogger(__name__)
 TIMEOUT = 10
 
 
-class HomeAssistantSkill(FallbackSkill):
+class MycroftHassSkill(FallbackSkill):
 
     def __init__(self):
         MycroftSkill.__init__(self)
-        super().__init__(name="HomeAssistantSkill")
+        super().__init__(name="MycroftHassSkill")
         self.ha = None
         self.enable_fallback = False
 
@@ -373,7 +373,7 @@ class HomeAssistantSkill(FallbackSkill):
 
     def handle_sonos_intent(self, message):
         entity = "Sonos " + message.data["Entity"]
-        LOGGER.debug("Entity: %s" % entity)
+        LOGGER.debug("Sonos Entity: %s" % entity)
         ha_entity = self._find_entity(
             entity,
             ['script']
@@ -520,11 +520,11 @@ class HomeAssistantSkill(FallbackSkill):
 
     def shutdown(self):
         self.remove_fallback(self.handle_fallback)
-        super(HomeAssistantSkill, self).shutdown()
+        super(MycroftHassSkill, self).shutdown()
 
     def stop(self):
         pass
 
 
 def create_skill():
-    return HomeAssistantSkill()
+    return MycroftHassSkill()
