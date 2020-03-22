@@ -1,5 +1,5 @@
 from requests import get, post
-from fuzzywuzzy import fuzz
+from rapidfuzz import fuzz
 import json
 from requests.exceptions import Timeout, RequestException
 
@@ -69,7 +69,7 @@ class HomeAssistantClient(object):
                         # and repetitions should not count on my behalf
                         score = fuzz.token_sort_ratio(
                             entity,
-                            state['attributes']['friendly_name'].lower())
+                            state['attributes']['friendly_name'])
                         if score > best_score:
                             best_score = score
                             best_entity = {
@@ -80,7 +80,7 @@ class HomeAssistantClient(object):
                                 "best_score": best_score}
                         score = fuzz.token_sort_ratio(
                             entity,
-                            state['entity_id'].lower())
+                            state['entity_id'])
                         if score > best_score:
                             best_score = score
                             best_entity = {
